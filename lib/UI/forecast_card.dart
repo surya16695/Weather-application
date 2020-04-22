@@ -4,6 +4,7 @@ import 'package:tempclimate/model/weather_forecast_model.dart';
 import 'package:tempclimate/util/convert_icon.dart';
 import 'package:tempclimate/util/forecast_util.dart';
 
+
 Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
   var forecastList = snapshot.data.list;
   var dayOfWeek = "";

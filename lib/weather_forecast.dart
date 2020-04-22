@@ -1,9 +1,11 @@
-import 'package:tempclimate/UI/bottom_view.dart';
-import 'package:tempclimate/UI/mid_view.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'UI/bottom_view.dart';
+import 'UI/mid_view.dart';
 import 'model/weather_forecast_model.dart';
 import 'network/network.dart';
+
 
 class WeatherForecast extends StatefulWidget {
   @override
@@ -12,7 +14,7 @@ class WeatherForecast extends StatefulWidget {
 
 class _WeatherForecastState extends State<WeatherForecast> {
   Future<WeatherForecastModel> forecastObject;
-  String _cityName = "San Diego";
+  String _cityName;
 
   @override
   void initState() {

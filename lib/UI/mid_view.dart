@@ -4,16 +4,16 @@ import 'package:tempclimate/util/forecast_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../weather_forecast.dart';
+
 
 class MidView extends StatelessWidget {
-  final AsyncSnapshot<WeatherForecast> snapshot;
+  final AsyncSnapshot<WeatherForecastModel> snapshot;
 
   const MidView({Key key, this.snapshot}) : super(key: key);
   @override
   Widget build(BuildContext context) {
 
-    var forecastList = snapshot.data.daily;
+    var forecastList = snapshot.data.list;
     var city = snapshot.data.city.name;
     var country = snapshot.data.city.country;
     var formattedDate =
@@ -130,7 +130,7 @@ class MidView extends StatelessWidget {
 
 
 Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
-  var forecastList = snapshot.data.hourly;
+  var forecastList = snapshot.data.list;
   var city = snapshot.data.city.name;
   var country = snapshot.data.city.country;
   var formattedDate =

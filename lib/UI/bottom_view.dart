@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tempclimate/model/weather_forecast_model.dart';
 
-import '../weather_forecast.dart';
 import 'forecast_card.dart';
 
-//Better way of doing business!
 class BottomView extends StatelessWidget {
   final AsyncSnapshot<WeatherForecastModel> snapshot;
 
@@ -24,7 +22,7 @@ class BottomView extends StatelessWidget {
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               separatorBuilder: (context, index) => SizedBox(width: 8),
-              itemCount: snapshot.data.daily.length,
+              itemCount: snapshot.data.list.length,
               itemBuilder: (context, index) => ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 child: Container(
@@ -47,7 +45,7 @@ class BottomView extends StatelessWidget {
 
 Widget bottomView(
     AsyncSnapshot<WeatherForecastModel> snapshot, BuildContext context) {
-  var forecastList = snapshot.data;
+  var forecastList = snapshot.data.list;
 
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
