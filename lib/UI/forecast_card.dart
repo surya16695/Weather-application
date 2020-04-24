@@ -11,7 +11,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
   DateTime date =
   new DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
   var fullDate = Util.getFormattedDate(date);
-  dayOfWeek = fullDate.split(",")[0]; //[Saturday,Dec 14,2019]
+  dayOfWeek = fullDate.split(",")[0]; //[Tuesday,Apr 14,2020]
 
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
