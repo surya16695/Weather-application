@@ -11,7 +11,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
   DateTime date =
   new DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
   var fullDate = Util.getFormattedDate(date);
-  dayOfWeek = fullDate.split(",")[0]; //[Tuesday,Apr 14,2020]
+  dayOfWeek = fullDate.split(",")[0]; //[Saturday,Dec 14,2019]
 
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
@@ -24,8 +24,8 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
       Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          CircleAvatar(
-            radius: 33,
+         CircleAvatar(
+            radius: 30,
             backgroundColor: Colors.white,
             // If it doesn't show (Font awesome icons are not showing)
 
@@ -49,7 +49,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
-                        "${forecastList[index].temp.min.toStringAsFixed(0)} °F"),
+                        "${forecastList[index].temp.min.toStringAsFixed(0)} °C"),
                   ),
                   Icon(
                     FontAwesomeIcons.solidArrowAltCircleDown,
@@ -63,7 +63,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
                 child: Row(
                   children: <Widget>[
                     Text(
-                        "${forecastList[index].temp.max.toStringAsFixed(0)} °F"),
+                        "${forecastList[index].temp.max.toStringAsFixed(0)} °C"),
                     Icon(
                       FontAwesomeIcons.solidArrowAltCircleUp,
                       color: Colors.white,
@@ -88,7 +88,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
                 child: Row(
                   children: <Widget>[
                     Text(
-                        "Win:${forecastList[index].speed.toStringAsFixed(1)} mi/h"),
+                        "Win:${forecastList[index].speed.toStringAsFixed(1)} km/h"),
 //                     Icon(FontAwesomeIcons.wind, color: Colors.white,
 //                       size: 17,)
                   ],
