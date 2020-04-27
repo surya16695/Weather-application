@@ -25,7 +25,7 @@ class SecondRouteState extends State<SecondRoute>{
     print("am nhere");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Time vs Temp")
+        title: Center(child: Text("Time vs Temp", textAlign: TextAlign.center))
       ),
       body: Center(
           child: Container(

@@ -19,72 +19,84 @@ class WeatherForecast extends StatefulWidget {
 class _WeatherForecastState extends State<WeatherForecast> {
   Future<WeatherForecastModel> forecastObject;
   String _cityName;
-  var refreshKey = GlobalKey<RefreshIndicatorState>();
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     print(" I am init state");
+//    forecastObject = getWeather(cityName: _cityName);
+
     forecastObject = getLocation();
+//    forecastObject.then((weather) {
+//        print(weather.list[0].weather[0].main);
+//    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Weather Prediction"),
+        title: Center(child: Text("Weather Prediction",textAlign: TextAlign.center)),
+        backgroundColor: Colors.blue,
       ),
       body: ListView(
         children: <Widget>[
 //          getLocat(),
-          RefreshIndicator(
-            key: refreshKey,
-            child:Container(
-              child: FutureBuilder<WeatherForecastModel>(
-                  future: forecastObject,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<WeatherForecastModel> snapshot) {
-                    if (snapshot.hasData) {
-                      return Column(
-                        children: <Widget>[
-                          MidView(snapshot: snapshot),
-                          //midView(snapshot),
-                          BottomView(snapshot: snapshot),
-                          //bottomView(snapshot, context)
-                          FloatingActionButton(
-                            child: Icon(Icons.show_chart),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SecondRoute()),
-                              );
-                            },
-                            backgroundColor: Colors.blue,
-                          )
-                        ],
-                      );
+//        textFieldView(),
+          Container(
+            child: FutureBuilder<WeatherForecastModel>(
+                future: forecastObject,
+                builder: (BuildContext context,
+                    AsyncSnapshot<WeatherForecastModel> snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: <Widget>[
+                        MidView(snapshot: snapshot),
+                        //midView(snapshot),
+                        BottomView(snapshot: snapshot),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            RaisedButton(
+                              child:Text("Refresh"),
+                              color: Colors.red,
+                              padding: const EdgeInsets.all(8.0),
+                              onPressed: (){
+                                setState(){
+                                  forecastObject = getLocation();
+                                }
+                              }
+                            ),
+                            RaisedButton(
+                              child:Text("Chart"),
+                              color: Colors.red,
+                              padding: const EdgeInsets.all(8.0),
+                               onPressed: (){
+                                  Navigator.of(context)
+                                      .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+                                  return new SecondRoute();}));
+                              }
+                           ),
+                          ],
+                        )]);
+                    //bottomView(snapshot, context)
                     } else {
-                      return Container(
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
-                  }),
-              ),
-              onRefresh: () async{
-                getVoid();
-              return await Future.delayed(Duration(seconds: 3));
-              },
+                    return Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                }),
           )
         ],
       ),
     );
   }
 
-//  Widget textFieldView() {
+  Widget textFieldView() {
 //    return Padding(
 //      padding: const EdgeInsets.all(12.0),
 //      child: Container(
@@ -107,10 +119,10 @@ class _WeatherForecastState extends State<WeatherForecast> {
 //      ),
 //    );
 
-//      return RefreshIndicator(
-//        onRefresh: getVoid(), child: null,
-//      );
-//  }
+      return GestureDetector(
+        onHorizontalDragDown: getVoid(),
+      );
+  }
 
   Future<WeatherForecastModel> getWeather({String cityName}) {
     return new Network().getWeatherForecast(cityName: _cityName);
@@ -127,10 +139,9 @@ class _WeatherForecastState extends State<WeatherForecast> {
     return new Network().getWeatherFore(lats:position.latitude.toString(), long:position.longitude.toString()) ;
   }
 
-  Future<Null> getVoid() {
+  getVoid() {
     print("Refreshed");
     forecastObject = getLocation();
-    return null;
   }
 
 }
