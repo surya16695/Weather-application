@@ -4,12 +4,11 @@ import 'package:tempclimate/model/weather_forecast_model.dart';
 import 'package:tempclimate/util/convert_icon.dart';
 import 'package:tempclimate/util/forecast_util.dart';
 
-
 Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
   var forecastList = snapshot.data.list;
   var dayOfWeek = "";
   DateTime date =
-  new DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
+      new DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
   var fullDate = Util.getFormattedDate(date);
   dayOfWeek = fullDate.split(",")[0]; //[Saturday,Dec 14,2019]
 
@@ -24,7 +23,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
       Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-         CircleAvatar(
+          CircleAvatar(
             radius: 30,
             backgroundColor: Colors.white,
             // If it doesn't show (Font awesome icons are not showing)

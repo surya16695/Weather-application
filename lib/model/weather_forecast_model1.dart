@@ -8,18 +8,18 @@ class WeatherForecastModel1 {
 
   WeatherForecastModel1(
       {this.lat,
-        this.lon,
-        this.timezone,
-        this.current,
-        this.hourly,
-        this.daily});
+      this.lon,
+      this.timezone,
+      this.current,
+      this.hourly,
+      this.daily});
 
   WeatherForecastModel1.fromJson(Map<String, dynamic> json) {
     lat = json['lat'];
     lon = json['lon'];
     timezone = json['timezone'];
     current =
-    json['current'] != null ? new Current.fromJson(json['current']) : null;
+        json['current'] != null ? new Current.fromJson(json['current']) : null;
     if (json['hourly'] != null) {
       hourly = new List<Hourly>();
       json['hourly'].forEach((v) {
@@ -70,19 +70,19 @@ class Current {
 
   Current(
       {this.dt,
-        this.sunrise,
-        this.sunset,
-        this.temp,
-        this.feelsLike,
-        this.pressure,
-        this.humidity,
-        this.dewPoint,
-        this.uvi,
-        this.clouds,
-        this.visibility,
-        this.windSpeed,
-        this.windDeg,
-        this.weather});
+      this.sunrise,
+      this.sunset,
+      this.temp,
+      this.feelsLike,
+      this.pressure,
+      this.humidity,
+      this.dewPoint,
+      this.uvi,
+      this.clouds,
+      this.visibility,
+      this.windSpeed,
+      this.windDeg,
+      this.weather});
 
   Current.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
@@ -167,15 +167,15 @@ class Hourly {
 
   Hourly(
       {this.dt,
-        this.temp,
-        this.feelsLike,
-        this.pressure,
-        this.humidity,
-        this.dewPoint,
-        this.clouds,
-        this.windSpeed,
-        this.windDeg,
-        this.weather});
+      this.temp,
+      this.feelsLike,
+      this.pressure,
+      this.humidity,
+      this.dewPoint,
+      this.clouds,
+      this.windSpeed,
+      this.windDeg,
+      this.weather});
 
   Hourly.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
@@ -230,18 +230,18 @@ class Daily {
 
   Daily(
       {this.dt,
-        this.sunrise,
-        this.sunset,
-        this.temp,
-        this.feelsLike,
-        this.pressure,
-        this.humidity,
-        this.dewPoint,
-        this.windSpeed,
-        this.windDeg,
-        this.weather,
-        this.clouds,
-        this.uvi});
+      this.sunrise,
+      this.sunset,
+      this.temp,
+      this.feelsLike,
+      this.pressure,
+      this.humidity,
+      this.dewPoint,
+      this.windSpeed,
+      this.windDeg,
+      this.weather,
+      this.clouds,
+      this.uvi});
 
   Daily.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];

@@ -5,7 +5,11 @@ Widget getWeatherIcon({String weatherDescription, Color color, double size}) {
   switch (weatherDescription) {
     case "Clear":
       {
-        return Icon(FontAwesomeIcons.sun, color: color, size: size,);
+        return Icon(
+          FontAwesomeIcons.sun,
+          color: color,
+          size: size,
+        );
       }
       break;
     case "Clouds":
@@ -15,17 +19,29 @@ Widget getWeatherIcon({String weatherDescription, Color color, double size}) {
       break;
     case "Rain":
       {
-        return Icon(FontAwesomeIcons.cloudRain, color: color, size: size,);
+        return Icon(
+          FontAwesomeIcons.cloudRain,
+          color: color,
+          size: size,
+        );
       }
       break;
     case "Snow":
       {
-        return Icon(FontAwesomeIcons.snowman, color: color, size: size,);
+        return Icon(
+          FontAwesomeIcons.snowman,
+          color: color,
+          size: size,
+        );
       }
       break;
     default:
       {
-        return Icon(FontAwesomeIcons.sun, color: color, size: size,);
+        return Icon(
+          FontAwesomeIcons.sun,
+          color: color,
+          size: size,
+        );
       }
       break;
   }

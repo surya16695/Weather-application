@@ -7,9 +7,9 @@ import 'package:tempclimate/model/weather_forecast_model1.dart';
 import 'package:tempclimate/network/network.dart';
 import 'package:flutter/cupertino.dart';
 
-class SecondRoute extends StatefulWidget{
+class SecondRoute extends StatefulWidget {
   @override
-  State<StatefulWidget> createState(){
+  State<StatefulWidget> createState() {
     return SecondRouteState();
   }
 }
@@ -29,34 +29,30 @@ class SecondRouteState extends State<SecondRoute> {
     print("am nhere");
     return Scaffold(
       appBar: AppBar(
-          title: Center(
-              child: Text("Time vs Temp", textAlign: TextAlign.center))
-      ),
+          title:
+              Center(child: Text("Time vs Temp", textAlign: TextAlign.center))),
       body: Center(
           child: Container(
-            alignment: Alignment.center,
-            child: FutureBuilder<WeatherForecastModel1>(
-                future: foreCastobj,
-                builder: (BuildContext context,
-                    AsyncSnapshot<WeatherForecastModel1> snapshots) {
-                  if (snapshots.hasData) {
-                    print("vamsiiiiiiiii");
-                    return
-                      //Initialize chart
-                      graphView(snapshots);
-                  } else if (snapshots.hasError) {
-                    print("suryaaaa here");
-                    return Text("${snapshots.error}", style: Theme
-                        .of(context)
-                        .textTheme
-                        .headline);
-                  } else {
-                    print("busterreeefew");
-                    return CircularProgressIndicator();
-                  }
-                }),
-          )
-      ),
+        alignment: Alignment.center,
+        child: FutureBuilder<WeatherForecastModel1>(
+            future: foreCastobj,
+            builder: (BuildContext context,
+                AsyncSnapshot<WeatherForecastModel1> snapshots) {
+              if (snapshots.hasData) {
+                print("vamsiiiiiiiii");
+                return
+                    //Initialize chart
+                    graphView(snapshots);
+              } else if (snapshots.hasError) {
+                print("suryaaaa here");
+                return Text("${snapshots.error}",
+                    style: Theme.of(context).textTheme.headline);
+              } else {
+                print("busterreeefew");
+                return CircularProgressIndicator();
+              }
+            }),
+      )),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: new FloatingActionButton(
         child: Icon(Icons.access_time),
@@ -65,14 +61,11 @@ class SecondRouteState extends State<SecondRoute> {
               theme: DatePickerTheme(
                 containerHeight: 210.0,
               ),
-              showTitleActions: true,
-              onConfirm: (time) {
-                print('confirm $time');
-                _time = time.hour;
-                setState(() {});
-              },
-              currentTime: DateTime.now(),
-              locale: LocaleType.en);
+              showTitleActions: true, onConfirm: (time) {
+            print('confirm $time');
+            _time = time.hour;
+            setState(() {});
+          }, currentTime: DateTime.now(), locale: LocaleType.en);
           setState(() {});
         },
         backgroundColor: Colors.blue,
@@ -96,33 +89,27 @@ class SecondRouteState extends State<SecondRoute> {
           trackballBehavior: TrackballBehavior(
               enable: true,
               // Displays the trackball on single tap
-              activationMode: ActivationMode.singleTap
-          ),
+              activationMode: ActivationMode.singleTap),
           title: ChartTitle(text: 'Temperature-Time analysis'),
           // Initialize category axis,
           tooltipBehavior: TooltipBehavior(
             enable: true,
           ),
-
           onTooltipRender: (TooltipArgs args) {
             print(_time);
             args.pointIndex = _time;
           },
-
           zoomPanBehavior: ZoomPanBehavior(
             enablePinching: true,
           ),
           primaryXAxis: NumericAxis(
               title: AxisTitle(
                 text: "Time in hours",
-
               ),
-              interval: 2
-          ),
+              interval: 2),
           primaryYAxis: NumericAxis(
             title: AxisTitle(
               text: "Temp in Centigrade",
-
             ),
           ),
           series: <ChartSeries>[
@@ -134,15 +121,13 @@ class SecondRouteState extends State<SecondRoute> {
               // Render the data label
 //          dataLabelSettings:DataLabelSettings(isVisible : true)
             )
-          ]
-      ),
+          ]),
     );
   }
 
   Widget timeView() {
     return Align(
       alignment: Alignment.bottomCenter,
-
     );
   }
 
@@ -177,17 +162,17 @@ class SecondRouteState extends State<SecondRoute> {
 //}
 
 }
-class Datas{
+
+class Datas {
   int date;
   double temp;
   Datas(this.date, this.temp);
 }
 
-dynamic lineData(List<Hourly> li){
+dynamic lineData(List<Hourly> li) {
   List<Datas> l1 = <Datas>[];
-  for(int i = 0; i < 24;i++){
-    var date =
-    new DateTime.fromMillisecondsSinceEpoch(li[i].dt * 1000);
+  for (int i = 0; i < 24; i++) {
+    var date = new DateTime.fromMillisecondsSinceEpoch(li[i].dt * 1000);
     double t = li[i].temp;
     l1.add(Datas(date.hour, t));
   }
